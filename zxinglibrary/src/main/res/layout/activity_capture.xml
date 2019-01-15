@@ -60,7 +60,7 @@
         <android.support.v7.widget.LinearLayoutCompat
             android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
-            android:layout_height="96dp"
+            android:layout_height="126dp"
             android:layout_gravity="bottom"
             android:background="@color/viewfinder_mask"
             android:orientation="horizontal">
@@ -75,8 +75,8 @@
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/flashLightIv"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
 
                     android:background="@drawable/sweepcode_flashlight_normal"
 
@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="手电筒"
+                    android:text="打开手电筒"
                     android:textColor="#ffffff" />
 
             </android.support.v7.widget.LinearLayoutCompat>

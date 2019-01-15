@@ -182,10 +182,10 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
 
         if (flashState == Constant.FLASH_OPEN) {
             flashLightIv.setImageResource(R.mipmap.sweepcode_flashlight_normal);
-            flashLightTv.setText("关闭闪光灯");
+            flashLightTv.setText("关闭手电筒");
         } else {
             flashLightIv.setImageResource(R.mipmap.sweepcode_flashlight_push);
-            flashLightTv.setText("打开闪光灯");
+            flashLightTv.setText("打开手电筒");
         }
 
     }

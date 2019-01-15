@@ -7,7 +7,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -33,7 +35,7 @@ public final class ViewfinderView extends View {
     private static final int POINT_SIZE = 6;
 
     private CameraManager cameraManager;
-    private Paint paint, scanLinePaint, reactPaint, frameLinePaint;
+    private Paint paint, scanLinePaint, reactPaint, frameLinePaint,textPaint;
     private Bitmap resultBitmap;
     private int maskColor; // 取景框外的背景颜色
     private int resultColor;// result Bitmap的颜色
@@ -52,6 +54,7 @@ public final class ViewfinderView extends View {
     private ValueAnimator valueAnimator;
     private Rect frame;
 
+    private PorterDuff.Mode mPorterDuffMode = PorterDuff.Mode.MULTIPLY;
 
     public ViewfinderView(Context context) {
         this(context, null);
@@ -119,6 +122,16 @@ public final class ViewfinderView extends View {
         scanLinePaint.setDither(true);
         scanLinePaint.setColor(scanLineColor);
 
+
+
+        /*文字初始化*/
+        textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        textPaint.setAntiAlias(true);
+        textPaint.setStrokeWidth(5);
+        textPaint.setColor(Color.WHITE);
+        textPaint.setTextSize(53);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+
     }
 
     private void initAnimator() {
@@ -176,6 +189,8 @@ public final class ViewfinderView extends View {
         /*绘制取景框边框*/
         drawFrameBounds(canvas, frame);
 
+        /*绘制取景框上面的文字*/
+        drawText(canvas, frame,width, height);
         if (resultBitmap != null) {
             // Draw the opaque result bitmap over the scanning rectangle
             // 如果有二维码结果的Bitmap，在扫取景框内绘制不透明的result Bitmap
@@ -189,6 +204,12 @@ public final class ViewfinderView extends View {
             /*绘制闪动的点*/
             // drawPoint(canvas, frame, previewFrame);
         }
+    }
+
+    private void drawText(Canvas canvas, Rect frame, int width, int height) {
+        String text="对准车上二维码";
+        canvas.drawText(text, width/2,frame.top*10/12, textPaint);
+
     }
 
     private void drawPoint(Canvas canvas, Rect frame, Rect previewFrame) {
