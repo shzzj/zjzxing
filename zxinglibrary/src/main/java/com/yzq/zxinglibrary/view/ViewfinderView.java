@@ -167,8 +167,8 @@ public final class ViewfinderView extends View {
         }
         initAnimator();
 
-        int width = canvas.getWidth();
-        int height = canvas.getHeight();
+        int width = getWidth();
+        int height = getHeight();
 
         /*绘制遮罩*/
         drawMaskView(canvas, frame, width, height);
